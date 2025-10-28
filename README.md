@@ -189,3 +189,27 @@ Dessa forma, cada LED possui seu próprio resistor limitador, garantindo o funci
 - Certifique-se de que **todos os resistores** estão conectados entre a **perna negativa dos LEDs** e o **trilho GND**.
 
 &emsp;Com isso, o circuito estará **fechado e pronto para funcionamento**, permitindo que o programa do semáforo controle corretamente a sequência de cores.
+
+## Avaliação em pares 
+
+Thulio Bacco: Tudo 3, apenas a estrutura que poderia ser melhorada, deu 0,5 na parte de ir a mais.
+Lucas Lopes: Tudo 3, apontou que não havia o ponteiro dentro do código, deu 0,5 nesta parte.
+
+
+| Avaliador | Critério | Contempla (Pontos) | Contempla Parcialmente (Pontos) | Não Contempla (Pontos) | Observações do Avaliador |
+|------------|-----------|--------------------|----------------------------------|------------------------|---------------------------|
+| **Thulio Bacco** | Montagem física com cores corretas, boa disposição dos fios e uso adequado de resistores |  | 2,5 |  |  |
+|  | Temporização adequada conforme tempos medidos com auxílio de algum instrumento externo | 3 |  |  |  |
+|  | Código implementa corretamente as fases do semáforo e estrutura do código (variáveis representativas e comentários) | 3 |  |  | Estrutura poderia ser melhorada |
+|  | Ir além: Implementou um componente extra, fez com `millis()` ao invés de `delay()` e/ou usou ponteiros no código |  | 0,5 |  |  |
+|  | **Pontuação Total** | **9 / 10** |  |  |  |
+
+
+| Avaliador | Critério | Contempla (Pontos) | Contempla Parcialmente (Pontos) | Não Contempla (Pontos) | Observações do Avaliador |
+|------------|-----------|--------------------|----------------------------------|------------------------|---------------------------|
+| **Lucas Lopes** | Montagem física com cores corretas, boa disposição dos fios e uso adequado de resistores | 3 |  |  |  |
+|  | Temporização adequada conforme tempos medidos com auxílio de algum instrumento externo | 3 |  |  |  |
+|  | Código implementa corretamente as fases do semáforo e estrutura do código (variáveis representativas e comentários) | 3 |  |  |  |
+|  | Ir além: Implementou um componente extra, fez com `millis()` ao invés de `delay()` e/ou usou ponteiros no código |  | 0,5 |  | Não havia ponteiro no código |
+|  | **Pontuação Total** | **9,5 / 10** |  |  |  |
+
