@@ -1,12 +1,11 @@
 // ---- Classe LED ---- //
 class Led {
   private:
-    int pin; // Guarda o pino do LED
+    int pin;
 
   public:
-    // Construtor da classe
     Led(int p) {
-      pin = p;           // Corrigido (antes estava invertido)
+      pin = p;
       pinMode(pin, OUTPUT);
     }
 
@@ -19,32 +18,16 @@ class Led {
     }
 };
 
-
-// ---- Classe Botao ---- //
-// IMPORTANTE: sem acentos no nome!
-class Botao {
-  private:
-    int pin;
-
-  public:
-    Botao(int p) {
-      pin = p;
-      pinMode(pin, INPUT_PULLUP); // Botao com resistor interno
-    }
-
-    bool pressionado() {
-      return digitalRead(pin) == LOW; // LOW = apertado
-    }
-};
-
-
 // ---- Classe Semaforo ---- //
 class Semaforo {
   private:
     Led* verde;
     Led* amarelo;
     Led* vermelho;
+
     int estado; // 0 = verde, 1 = amarelo, 2 = vermelho
+    unsigned long tempoAnterior;
+    unsigned long duracao;
 
     void apagarTodos() {
       verde->off();
@@ -57,50 +40,63 @@ class Semaforo {
       verde = v;
       amarelo = a;
       vermelho = r;
-      estado = 0; // começa no verde
+      estado = 0;
+      tempoAnterior = 0;
+      duracao = 0;
     }
 
+    // Inicia no verde
+    void iniciar() {
+      apagarTodos();
+      estado = 0;
+      verde->on();
+      tempoAnterior = millis();
+      duracao = 6000UL; // 6 segundos (verde)
+    }
+
+    // Atualiza automaticamente de acordo com o tempo
+    void atualizar() {
+      unsigned long agora = millis();
+      if (agora - tempoAnterior >= duracao) {
+        proximo();
+        tempoAnterior = agora;
+      }
+    }
+
+  private:
     void proximo() {
-      apagarTodos(); // garante que só 1 LED ficará ligado
+      apagarTodos();
 
       if (estado == 0) {
-        verde->on();
+        amarelo->on();
         estado = 1;
+        duracao = 2000UL; // 2 segundos (amarelo)
       } 
       else if (estado == 1) {
-        amarelo->on();
-        estado = 2;
-      } 
-      else if (estado == 2) {
         vermelho->on();
+        estado = 2;
+        duracao = 4000UL; // 4 segundos (vermelho)
+      } 
+      else {
+        verde->on();
         estado = 0;
+        duracao = 6000UL; // 6 segundos (verde)
       }
     }
 };
 
-
 // ---- Instanciando os objetos ---- //
-
-// LEDs nos pinos digitais
 Led verde(10);
 Led amarelo(9);
 Led vermelho(8);
 
-// Botao no pino 2
-Botao botao(2);
-
-// Semaforo recebendo os 3 LEDs
 Semaforo semaforo(&verde, &amarelo, &vermelho);
-
 
 void setup() {
   Serial.begin(9600);
-  semaforo.proximo(); // Inicia com a cor verde ligada
+  semaforo.iniciar();
 }
 
 void loop() {
-  if (botao.pressionado()) {
-    semaforo.proximo(); 
-    delay(2000); // Debounce simples para evitar multiplos cliques
-  }
+  semaforo.atualizar(); // troca automaticamente
 }
