@@ -158,6 +158,11 @@ void loop() {
 Essa ligação tem o objetivo de criar um **ponto comum de retorno da corrente elétrica**, funcionando como o **"ralo"** por onde toda a energia que circula pelo circuito retorna.  
 Sem essa conexão, o circuito elétrico não se fecha e os componentes não funcionam corretamente.
 
+<div align="center">
+   <img src="assets/foto1.png">
+
+</div>
+
 #### 2. Conexão dos LEDs
 
 &emsp;Em seguida, conecte três fios aos pinos digitais do Arduino, seguindo a ordem das cores do semáforo:
@@ -168,9 +173,19 @@ Sem essa conexão, o circuito elétrico não se fecha e os componentes não func
 | Amarelo     | 9             | 13                   | A      |
 | Vermelho    | 8             | 20                   | A      |
 
+<div align="center">
+   <img src="assets/foto2.png">
+
+</div>
+
 &emsp;Agora, insira os **LEDs** na protoboard de modo que:
 - A **perna positiva (ânodo)** de cada LED esteja conectada na **mesma coluna** do fio correspondente (verde, amarelo ou vermelho).
 - A **perna negativa (cátodo)** esteja conectada **uma linha abaixo**, nas colunas **5, 12 e 19**, respectivamente.
+
+<div align="center">
+   <img src="assets/foto3.png">
+
+</div>
 
 #### 3. Conexão dos Resistores
 
@@ -178,6 +193,11 @@ Sem essa conexão, o circuito elétrico não se fecha e os componentes não func
 
 - Uma ponta do resistor deve estar na **mesma coluna da perna negativa do LED** (colunas 5, 12 e 19).
 - A outra ponta do resistor deve ser conectada **ao fio que está conectado ao trilho negativo (GND)** da protoboard.
+
+<div align="center">
+   <img src="assets/foto4.png">
+
+</div>
 
 Dessa forma, cada LED possui seu próprio resistor limitador, garantindo o funcionamento seguro.
 
